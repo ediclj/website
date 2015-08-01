@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title> {{site-title}}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{description}}">
+
+    <!-- Bootstrap and Font Awesome -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+
+    <!-- Theme CSS -->
+    {% style "css/style.css" %}
+</head>
+<body>
+
+
+    <nav class="navbar navbar-default visible-xs" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {% if author.github %}
+            <a type="button" class="navbar-toggle nav-link" href="http://github.com/{{ author.github }}">
+                <i class="fa fa-github"></i>
+            </a>
+            {% endif %}
+            {% if author.twitter %}
+            <a type="button" class="navbar-toggle nav-link" href="http://twitter.com/{{ author.twitter }}">
+                <i class="fa fa-twitter"></i>
+            </a>
+            {% endif %}
+            {% if author.email %}
+            <a type="button" class="navbar-toggle nav-link" href="mailto:{{ author.email }}">
+                <i class="fa fa-envelope"></i>
+            </a>
+            {% endif %}
+            <a class="navbar-brand" href="{{ site-url }}/">
+                <img src="http://www.gravatar.com/avatar/{{author.email_md5}}?s=35" class="img-circle" />
+                {{ site-title }}
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="">Home</a></li>
+                <li><a href="">Categories</a></li>
+                <li><a href="">Tags</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+
+    <!-- nav-menu-dropdown -->
+    <div class="btn-group hidden-xs" id="nav-menu">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-bars"></i>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="{{ site-url }}"><i class="fa fa-home"></i>Home</a></li>
+            <li><a href="{{ archives-uri }}"><i class="fa fa-folder"></i>Archives</a></li>
+            <li><a href=""><i class="fa fa-tags"></i>Tags</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+        </ul>
+    </div>
+    <!-- /.nav-menu-dropdown -->
+
+    <div class="col-sm-3 sidebar hidden-xs">
+        {% include "/html/sidebar.html" %}
+    </div>
+
+    <div class="col-sm-9 col-sm-offset-3">
+        {% block content %}
+        {% endblock %}
+
+        {% include "/html/footer.html" %}
+    </div>
+
+
+
+
+
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    {% script "js/highlight.pack.js" %}
+    {% script "js/app.js"}
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
+

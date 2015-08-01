@@ -1,0 +1,45 @@
+{% extends "/html/base.html" %}
+{%block subtitle %}: {{post.title}}{% endblock %}
+{% block content %}
+<div id="post">
+    {% include "/html/post-content.html" %}
+
+
+    <div class="clearfix"></div>
+        <ul class="pager">
+            {% if post.prev %}
+            <li class="previous"><a href="{{post.prev.uri}}" title="{{post.prev.title}}">&larr; Previous</a></li>
+            {% else %}
+            <li class="previous disabled"><a>&larr; Previous</a></li>
+            {% endif %}
+            {% if post.next %}
+            <li class="next"><a href="{{post.next.uri}}" title="{{post.next.title}}">Next &rarr;</a></li>
+            {% else %}
+            <li class="next disabled"><a>Next &rarr;</a>
+          {% endif %}
+        </ul>
+        <hr>
+    </div>
+    <div class="col-sm-2 sidebar-2"></div>
+
+
+
+    {% if disqus-shortname %}
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = '{{ disqus-shortname }}';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    {% endif %}
+
+
+</div>
+{% endblock %}
